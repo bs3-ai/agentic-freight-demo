@@ -115,3 +115,12 @@ When writing the report:
 Do not include speculative rewrites or proposed replacement code.
 
 The goal is to help a future agent safely understand the legacy pricing engine before any test creation or refactoring begins.
+
+# SAFETY CONSTRAINT
+
+THIS IS AN ANALYSIS-ONLY TASK.
+DO NOT MODIFY PRODUCTION CODE.
+DO NOT CREATE TESTS.
+DO NOT FIX BUGS.
+DO NOT REFACTOR THE SYSTEM.
+YOUR ONLY GOAL IS TO UNDERSTAND AND DOCUMENT THE LEGACY PRICING ENGINE.
