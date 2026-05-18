@@ -1,0 +1,17 @@
+name: Automated Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+jobs:
+  review-context:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Print review focus
+        run: |
+          echo "Review pricing correctness, inactive partner handling, API contracts, tests, and architecture boundaries."
