@@ -6,7 +6,7 @@ export function calculateLegacyInsuranceAmount(input: FreightQuoteInput, interst
 
   if (input.vehicle.category === "luxury") {
     // Known intentional bug: long-distance luxury freight uses 20%, although the domain says it should be 35%.
-    legacyMultiplier = input.distanceKm > 150 ? 0.2 : 0.12;
+    legacyMultiplier = input.distanceKm >= 150 ? 0.2 : 0.12;
     insuranceAmount = input.vehicle.declaredValue * legacyMultiplier;
 
     // Duplicated luxury logic from quote preview. This is redundant but preserved as legacy texture.
