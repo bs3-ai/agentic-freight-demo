@@ -17,6 +17,32 @@ describe("legacy pricing characterization", () => {
     jest.restoreAllMocks();
   });
 
+  it("preserves the exact 150km luxury insurance boundary", () => {
+    const boundaryQuote = calculateLegacyFreightQuote({
+      vehicle: luxuryVehicle,
+      partner: standardPartner,
+      originCity: "Sao Paulo",
+      originState: "SP",
+      destinationCity: "Campinas",
+      destinationState: "SP",
+      distanceKm: 150
+    });
+
+    const aboveBoundaryQuote = calculateLegacyFreightQuote({
+      vehicle: luxuryVehicle,
+      partner: standardPartner,
+      originCity: "Sao Paulo",
+      originState: "SP",
+      destinationCity: "Campinas",
+      destinationState: "SP",
+      distanceKm: 151
+    });
+
+    expect(boundaryQuote.insuranceAmount).toBe(64800);
+    expect(boundaryQuote.warnings).toContain("Legacy boundary behavior applied at 150km.");
+    expect(aboveBoundaryQuote.insuranceAmount).toBe(108000);
+  });
+
   it("preserves the known luxury long-distance insurance bug", () => {
     const quote = calculateLegacyFreightQuote({
       vehicle: luxuryVehicle,
